@@ -1,31 +1,47 @@
 'use strict';
 
 // Cart constructor.
-var Cart = function(items) {
+var Cart = function (items) {
+  // a method to add chosen items to cart
   // this.items is an array of CartItem instances.
   this.items = items;
+  this.render = function () {
+    var listElement = document.createElement('li');
+    listElement.textContent = this.item;
+    // variable for list in cart + appendChild(listElement);
+  }
 };
 
-Cart.prototype.addItem = function(product, quantity) {
+Cart.prototype.addItem = function (product, quantity) {
   // TODO: Fill in this instance method to create a new CartItem and add it to this.items
+  // We need to add the product and the quantity and push them into the cart
+  this.product = product;
+  this.quantity = quantity;
+
+
+
+  Cart.push(this);
 };
 
-Cart.prototype.saveToLocalStorage = function() {
+Cart.prototype.saveToLocalStorage = function () {
   // TODO: Fill in this instance method to save the contents of the cart to localStorage
+  localStorage.catalogItems = JSON.stringify(this.items);
+  console.log('this is what is in local storage', localstorage.items);
+  localStorage.setItem('product', 'name');
 };
 
-Cart.prototype.removeItem = function(item) {
+Cart.prototype.removeItem = function (item) {
   // TODO: Fill in this instance method to remove one item from the cart.
   // Note: You will have to decide what kind of parameter to pass in here!
 };
 
-var CartItem = function(product, quantity) {
+var CartItem = function (product, quantity) {
   this.product = product;
   this.quantity = quantity;
 };
 
 // Product contructor.
-var Product = function(filePath, name) {
+var Product = function (filePath, name) {
   this.filePath = filePath;
   this.name = name;
   Product.allProducts.push(this);
@@ -57,3 +73,5 @@ function generateCatalog() {
 
 // Initialize the app by creating the big list of products with images and names
 generateCatalog();
+
+
