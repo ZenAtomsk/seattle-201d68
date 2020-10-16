@@ -5,6 +5,11 @@ var Cart = function (items) {
   // a method to add chosen items to cart
   // this.items is an array of CartItem instances.
   this.items = items;
+  this.render = function () {
+    var listElement = document.createElement('li');
+    listElement.textContent = this.item;
+    // variable for list in cart + appendChild(listElement);
+  }
 };
 
 Cart.prototype.addItem = function (product, quantity) {
@@ -20,8 +25,8 @@ Cart.prototype.addItem = function (product, quantity) {
 
 Cart.prototype.saveToLocalStorage = function () {
   // TODO: Fill in this instance method to save the contents of the cart to localStorage
-  localStorage.catalogItems = JSON.stringify(Product.allProducts);
-  console.log('this is what is in local storage', localstorage.catalogItems);
+  localStorage.catalogItems = JSON.stringify(this.items);
+  console.log('this is what is in local storage', localstorage.items);
   localStorage.setItem('product', 'name');
 };
 
